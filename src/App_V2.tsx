@@ -25,18 +25,11 @@ class App extends Component<AppProps, AppState> {
 
     // 04-2 定义该方法，将变更的新值传入
     handleFirstNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void = event => {
-        this.setState({firstName: event.currentTarget.value})
+        this.setState({firstName : event.currentTarget.value})
     };
 
     handleLastNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void = event => {
-        this.setState({lastName: event.currentTarget.value})
-    };
-
-    // 05. 针对上面两个方法进行抽取，加入新传人参数name
-    handleNameChange: (event: React.ChangeEvent<HTMLInputElement>, name: 'firstName' | 'lastName') => void =
-        (event, name) => {
-        // @ts-ignore
-        this.setState({[name]: event.currentTarget.value})
+        this.setState({lastName : event.currentTarget.value})
     };
 
     render() {
@@ -57,7 +50,7 @@ class App extends Component<AppProps, AppState> {
                             id="first-name"
                             // 04-1. 为了保证state的值始终最新的需要更新这个值
                             // 鼠标放在上面，查看签名，然后定义一个方法
-                            onChange={e => {this.handleNameChange(e,'firstName')}}
+                            onChange={this.handleFirstNameChange}
                         />
                         <label className="input-label" htmlFor="last-name">
                             Last Name :
@@ -68,7 +61,7 @@ class App extends Component<AppProps, AppState> {
                             value={this.state.lastName}
                             name="lastName"
                             id="last-name"
-                            onChange={e => {this.handleNameChange(e,'lastName')}}
+                            onChange={this.handleLastNameChange}
                         />
                         <button className="primary-button">submit</button>
                     </form>
